@@ -1,0 +1,7 @@
+{
+  "name": "NTNU Smart Check-in",
+  "description": "A futuristic student check-in system that logs emails to Google Sheets and generates personalized AI motivational messages.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
