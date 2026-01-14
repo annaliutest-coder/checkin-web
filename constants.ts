@@ -18,7 +18,7 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
     var studentEmail = data.email;
     var time = data.timestamp;
-    var adminEmail = "xinyiliu@ntnu.edu.tw"; // 指定管理員信箱
+    var adminEmail = "annaliutest@gmail.com"; // 指定管理員信箱
     
     // 1. 紀錄到 Google 試算表
     var ss = SpreadsheetApp.getActiveSpreadsheet();
