@@ -234,7 +234,7 @@ const App: React.FC = () => {
                 <h3 className="text-amber-500 font-bold">1. 貼上程式碼</h3>
                 <ol className="list-decimal list-inside space-y-2 text-slate-300">
                   <li>開啟一個新的 Google 試算表。</li>
-                  <li>點擊「延伸模組」 > 「Apps Script」。</li>
+                  <li>點擊「延伸模組」 &gt; 「Apps Script」。</li>
                   <li>刪除所有內容並貼上下方的程式碼：</li>
                 </ol>
                 <div className="relative group mt-2">
@@ -254,7 +254,7 @@ const App: React.FC = () => {
               <div className="space-y-3">
                 <h3 className="text-amber-500 font-bold">2. 部署網頁應用程式</h3>
                 <ul className="list-disc list-inside space-y-2 text-slate-300 leading-relaxed">
-                  <li>點擊「部署」 > 「新部署」。</li>
+                  <li>點擊「部署」 &gt; 「新部署」。</li>
                   <li>類型選「網頁應用程式」。</li>
                   <li>執行身分：<span className="text-white font-bold">我 ({ADMIN_EMAIL})</span></li>
                   <li>誰可以存取：<span className="text-red-500 underline font-bold">「任何人」(Anyone)</span></li>
