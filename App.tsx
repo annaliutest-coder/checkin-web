@@ -88,7 +88,7 @@ const App: React.FC = () => {
             <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl text-white">
               NTNU <span className="text-red-600">Smart Check-in</span>
             </h1>
-            <p className="text-slate-500 font-medium mt-1">國立臺灣師範大學 • 智慧打卡系統</p>
+            <p className="text-slate-500 font-medium mt-1">國立臺灣師範大學華語文教學系國華組 • 打卡系統</p>
           </div>
         </div>
 
