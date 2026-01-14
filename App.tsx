@@ -233,7 +233,7 @@ const App: React.FC = () => {
                 <h3 className="text-amber-500 font-bold">1. 貼上程式碼</h3>
                 <ol className="list-decimal list-inside space-y-2 text-slate-300">
                   <li>開啟一個新的 Google 試算表。</li>
-                  <li>點擊「延伸模組」 > 「Apps Script」。</li>
+                 <li>點擊「延伸模組」 &gt; 「Apps Script」。</li>  
                   <li>刪除所有內容並貼上下方的程式碼：</li>
                 </ol>
                 <div className="relative group">
