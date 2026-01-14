@@ -8,7 +8,7 @@ export const TARGET_EMAIL = 'xinyiliu@ntnu.edu.tw';
 // 3. Paste the provided backend code.
 // 4. Deploy as Web App (Anyone can access).
 // 5. Replace this URL.
-export const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEiX6rIeiP-hY3AjWK8RW0pM6LwiCIZytzbZDHZPO7Bek0_cw0u7Kb8bUwA93rMmmvoQ/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 function doPost(e) {
