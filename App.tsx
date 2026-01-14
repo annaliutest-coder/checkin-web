@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { CheckCircle, Mail, Clock, Send, ShieldCheck, Info, UserCheck, AlertCircle } from 'lucide-react';
+import { CheckCircle, Mail, Clock, Send, ShieldCheck, Info, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 import { AppStatus, CheckInData } from './types';
 import { TARGET_EMAIL, GOOGLE_SCRIPT_URL } from './constants';
 import { getMotivationalMessage } from './services/geminiService';
@@ -10,7 +10,6 @@ const App: React.FC = () => {
   const [status, setStatus] = useState<AppStatus>(AppStatus.IDLE);
   const [history, setHistory] = useState<CheckInData[]>([]);
   const [aiMessage, setAiMessage] = useState<string>('');
-  const [showConfig, setShowConfig] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -42,8 +41,8 @@ const App: React.FC = () => {
       const msg = await getMotivationalMessage(email);
       setAiMessage(msg);
 
-      // 2. 後端同步
-      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_GOOGLE_APPS_SCRIPT')) {
+      // 2. 後端同步 (發信與存檔)
+      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes('YOUR_DEPLOYMENT_ID')) {
         try {
           await fetch(GOOGLE_SCRIPT_URL, {
             method: 'POST',
@@ -51,7 +50,7 @@ const App: React.FC = () => {
             body: JSON.stringify(newEntry),
           });
         } catch (err) {
-          console.warn("後端同步暫時不可用");
+          console.warn("後端同步暫時不可用，但紀錄已保存在本地");
         }
       }
 
@@ -63,7 +62,8 @@ const App: React.FC = () => {
       setStatus(AppStatus.SUCCESS);
       setEmail('');
       
-      setTimeout(() => setStatus(AppStatus.IDLE), 8000);
+      // 8秒後自動回到輸入介面
+      setTimeout(() => setStatus(AppStatus.IDLE), 10000);
     } catch (err) {
       console.error(err);
       setErrorMsg("系統錯誤，請稍後再試。");
@@ -88,7 +88,7 @@ const App: React.FC = () => {
             <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl text-white">
               NTNU <span className="text-red-600">Smart Check-in</span>
             </h1>
-            <p className="text-slate-500 font-medium mt-1">國立臺灣師範大學華語文教學系國華組 • 打卡系統</p>
+            <p className="text-slate-500 font-medium mt-1 uppercase tracking-widest text-xs">Department of Chinese as a Second Language</p>
           </div>
         </div>
 
@@ -96,29 +96,35 @@ const App: React.FC = () => {
           <div className="scan-line"></div>
           
           {status === AppStatus.SUCCESS ? (
-            <div className="py-8 text-center space-y-6 animate-in fade-in zoom-in duration-500">
+            <div className="py-4 text-center space-y-6 animate-in fade-in zoom-in duration-500">
               <div className="relative mx-auto w-24 h-24">
                 <div className="absolute inset-0 bg-green-500/20 rounded-full success-pulse"></div>
                 <div className="relative flex items-center justify-center w-full h-full bg-green-500/20 rounded-full text-green-400 border border-green-500/30">
                   <CheckCircle className="w-12 h-12" />
                 </div>
               </div>
-              <h2 className="text-2xl font-bold text-white">打卡完成！</h2>
+              <div className="space-y-2">
+                <h2 className="text-2xl font-bold text-white">打卡完成！</h2>
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-xs font-medium">
+                  <Sparkles className="w-3 h-3" />
+                  歡迎信已寄送至您的信箱
+                </div>
+              </div>
               <div className="p-6 bg-slate-950/50 rounded-2xl border border-white/5 italic text-red-100 text-sm leading-relaxed shadow-inner">
                 "{aiMessage}"
               </div>
               <button 
                 onClick={() => setStatus(AppStatus.IDLE)}
-                className="text-slate-500 hover:text-white text-sm transition-colors"
+                className="text-slate-500 hover:text-white text-sm transition-colors pt-2"
               >
-                返回
+                ← 返回
               </button>
             </div>
           ) : (
             <form onSubmit={handleCheckIn} className="space-y-6">
               <div className="space-y-3">
                 <div className="flex justify-between px-1">
-                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-widest">學生電子郵件</label>
+                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-widest">請輸入電子郵件獲取申請資訊</label>
                   {errorMsg && <span className="text-xs text-red-500 font-medium">{errorMsg}</span>}
                 </div>
                 <div className="relative group">
@@ -140,13 +146,13 @@ const App: React.FC = () => {
                 disabled={status === AppStatus.SUBMITTING}
                 className="w-full bg-red-700 hover:bg-red-600 disabled:bg-slate-800 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 transition-all transform active:scale-[0.98] text-white shadow-xl shadow-red-950/30"
               >
-                {status === AppStatus.SUBMITTING ? "驗證中..." : "確認打卡"}
+                {status === AppStatus.SUBMITTING ? "發送中..." : "立即打卡領取資訊"}
               </button>
             </form>
           )}
         </div>
 
-        {history.length > 0 && (
+        {history.length > 0 && status !== AppStatus.SUCCESS && (
           <div className="glass rounded-[2rem] p-6 space-y-4 shadow-xl border border-white/5">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <Clock className="w-4 h-4" /> 最近紀錄
@@ -167,7 +173,7 @@ const App: React.FC = () => {
         
         <div className="text-center pt-4">
           <p className="text-slate-700 text-[10px] tracking-widest uppercase">
-            &copy; {new Date().getFullYear()} NTNU SMART CAMPUS
+            &copy; {new Date().getFullYear()} NTNU TCSL • International Student Group
           </p>
         </div>
       </main>
