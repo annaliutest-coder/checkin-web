@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -47,7 +48,7 @@
         }
     </style>
 
-    <!-- 防止瀏覽器找不到 process 而崩潰 -->
+    <!-- 在所有模組載入前初始化 process 物件，防止 ReferenceError -->
     <script>
       window.process = { env: { API_KEY: "" } };
     </script>
@@ -68,7 +69,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <!-- 確保 index.tsx 作為模組正確載入 -->
     <script type="module" src="index.tsx"></script>
 </body>
 </html>
