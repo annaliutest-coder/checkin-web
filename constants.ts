@@ -2,7 +2,7 @@
 export const TARGET_EMAIL = 'xinyiliu@ntnu.edu.tw';
 
 // 當您在 GAS 部署完畢後，請將下面的 'YOUR_DEPLOYMENT_ID' 替換為實際的 ID
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8TSJKX3H2PfFP6WPKP4v_uQWLuAyqfNlUVoqT_HH-2i8s_nI9jwi6ai-cTQtj9AkQ5g/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 /**
