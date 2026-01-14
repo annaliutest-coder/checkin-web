@@ -1,9 +1,9 @@
 
-export const ADMIN_EMAIL = 'annaliutest@gmail.com'; // 後端管理與發信帳號
-export const PUBLIC_CONTACT_EMAIL = 'aclc@ntnu.edu.tw'; // 前端顯示的聯絡信箱
+export const ADMIN_EMAIL = 'xinyiliu@ntnu.edu.tw'; // 後端管理與發信帳號
+export const PUBLIC_CONTACT_EMAIL = 'clc@ntnu.edu.tw'; // 前端顯示的聯絡信箱
 
 // 當您在 GAS 部署完畢後，請將下面的 'YOUR_DEPLOYMENT_ID' 替換為實際的 ID
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIMOV23va8FoYsPRRuu4hSlxs9_ucVfkWtOdmUAhk3BI3Azf1GkJvbzOHMpvUV843pHA/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 /**
@@ -40,7 +40,7 @@ function doPost(e) {
       "🔹 NTNU外國學生入學申請網站：https://bds.oia.ntnu.edu.tw/bds/apply \\n" +
       "🔹 華語系國華組介紹：\\n" +
       "   https://www.tcsl.ntnu.edu.tw/index.php/enroll/bachelor/clc/ \\n\\n" +
-      "有什麼問題，歡迎寫信給我們 clc@ntnu.edu.tw。\\n\\n" +
+      "有什麼問題，歡迎寫信給我們 ${PUBLIC_CONTACT_EMAIL}。\\n\\n" +
       "國立臺灣師範大學 華語文教學系 敬上";
 
     MailApp.sendEmail({

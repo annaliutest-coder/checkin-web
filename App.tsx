@@ -96,7 +96,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* 設定提示按鈕 */}
         {!isBackendConfigured && (
           <button 
             onClick={() => setShowSetup(true)}
@@ -125,7 +124,7 @@ const App: React.FC = () => {
                 </div>
               </div>
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold text-white">打卡完成！</h2>
+                <h2 className="text-2xl font-bold text-white">已經把資訊寄給你了</h2>
                 <p className="text-slate-400 text-sm italic px-4">"{aiMessage}"</p>
               </div>
               
@@ -186,7 +185,6 @@ const App: React.FC = () => {
           )}
         </div>
 
-        {/* 歷史紀錄 */}
         {history.length > 0 && status !== AppStatus.SUCCESS && (
           <div className="glass rounded-[2rem] p-6 space-y-4 shadow-xl border border-white/5">
             <h3 className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2 px-1">
@@ -213,7 +211,6 @@ const App: React.FC = () => {
         </div>
       </main>
 
-      {/* 設定助手 */}
       {showSetup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl max-h-[85vh] rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
