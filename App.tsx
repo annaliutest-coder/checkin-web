@@ -253,7 +253,7 @@ const App: React.FC = () => {
               <div className="space-y-3">
                 <h3 className="text-amber-500 font-bold">2. 部署網頁應用程式</h3>
                 <ul className="list-disc list-inside space-y-2 text-slate-300">
-                  <li>點擊「部署」 > 「新部署」。</li>
+                  <li>點擊「部署」 &gt; 「新部署」。</li>  
                   <li>類型選「網頁應用程式」。</li>
                   <li>執行身分：<span className="text-white font-bold">我 ({TARGET_EMAIL})</span></li>
                   <li>誰可以存取：<span className="text-red-500 underline font-bold">「任何人」(Anyone)</span></li>
