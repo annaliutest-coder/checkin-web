@@ -2,7 +2,7 @@
 export const TARGET_EMAIL = 'xinyiliu@ntnu.edu.tw';
 
 // 注意：請將此網址替換為您在 Google Apps Script 部署後獲得的「網頁應用程式 URL」
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyEiX6rIeiP-hY3AjWK8RW0pM6LwiCIZytzbZDHZPO7Bek0_cw0u7Kb8bUwA93rMmmvoQ/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsMBuJnB92GceuogC-NoTC2i2u6On8zNxDGj7vu8TeTDyzqbZ-hqL-dVbrdHzdjgqhjw/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 function doPost(e) {
