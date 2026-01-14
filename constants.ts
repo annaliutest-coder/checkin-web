@@ -1,8 +1,8 @@
 
-export const TARGET_EMAIL = 'xinyiliu@ntnu.edu.tw';
+export const TARGET_EMAIL = 'annaliutest@gmail.com';
 
 // 當您在 GAS 部署完畢後，請將下面的 'YOUR_DEPLOYMENT_ID' 替換為實際的 ID
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8TSJKX3H2PfFP6WPKP4v_uQWLuAyqfNlUVoqT_HH-2i8s_nI9jwi6ai-cTQtj9AkQ5g/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 /**
@@ -25,7 +25,7 @@ function doPost(e) {
     var sheet = ss.getSheets()[0];
     sheet.appendRow([time, studentEmail, "已發送歡迎信"]);
     
-    // 2. 發送通知給系辦管理員 (xinyiliu@ntnu.edu.tw)
+    // 2. 發送通知給系辦管理員 (annaliutest@gmail.com)
     MailApp.sendEmail({
       to: adminEmail,
       subject: "【重要通知】新學生已完成打卡簽到：" + studentEmail,
