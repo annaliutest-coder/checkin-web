@@ -6,7 +6,7 @@ import {
   DatabaseZap, ExternalLink, Copy, Check 
 } from 'lucide-react';
 import { AppStatus, CheckInData } from './types';
-import { TARGET_EMAIL, GOOGLE_SCRIPT_URL, GOOGLE_APPS_SCRIPT_CODE } from './constants';
+import { ADMIN_EMAIL, PUBLIC_CONTACT_EMAIL, GOOGLE_SCRIPT_URL, GOOGLE_APPS_SCRIPT_CODE } from './constants';
 import { getMotivationalMessage } from './services/geminiService';
 
 const App: React.FC = () => {
@@ -76,7 +76,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-[#020617] text-slate-100 font-sans">
+    <div className="min-h-screen min-h-[100dvh] flex flex-col items-center justify-center p-4 bg-[#020617] text-slate-100 font-sans overflow-x-hidden">
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-900/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px]"></div>
@@ -100,20 +100,20 @@ const App: React.FC = () => {
         {!isBackendConfigured && (
           <button 
             onClick={() => setShowSetup(true)}
-            className="w-full flex items-center justify-between p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-amber-400 text-sm hover:bg-amber-500/20 transition-all group"
+            className="w-full flex items-center justify-between p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-amber-400 text-sm hover:bg-amber-500/20 transition-all group active:scale-[0.98]"
           >
             <div className="flex items-center gap-3">
               <DatabaseZap className="w-5 h-5 animate-pulse" />
               <div className="text-left">
                 <p className="font-bold">尚未連動發信功能</p>
-                <p className="text-[10px] opacity-70">點擊查看如何以 {TARGET_EMAIL} 身分發信</p>
+                <p className="text-[10px] opacity-70">點擊查看如何以 {ADMIN_EMAIL} 身分發信</p>
               </div>
             </div>
             <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
         )}
 
-        <div className="glass rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden border border-white/10">
+        <div className="glass rounded-[2.5rem] p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-white/10">
           <div className="scan-line"></div>
           
           {status === AppStatus.SUCCESS ? (
@@ -136,7 +136,7 @@ const App: React.FC = () => {
                 </div>
                 <button 
                   onClick={() => setStatus(AppStatus.IDLE)}
-                  className="text-slate-500 hover:text-white text-xs transition-colors underline underline-offset-4"
+                  className="text-slate-500 hover:text-white text-xs transition-colors underline underline-offset-4 p-2"
                 >
                   回首頁
                 </button>
@@ -153,6 +153,7 @@ const App: React.FC = () => {
                   <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-600 group-focus-within:text-red-500 transition-colors" />
                   <input
                     type="email"
+                    inputMode="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -205,57 +206,57 @@ const App: React.FC = () => {
           </div>
         )}
 
-        <div className="text-center pt-2">
+        <div className="text-center pt-2 pb-6">
           <p className="text-slate-700 text-[9px] tracking-[0.3em] uppercase">
-            &copy; {new Date().getFullYear()} NTNU TCSL • CONTACT: {TARGET_EMAIL}
+            &copy; 2026 NTNU TCSL • CONTACT: {PUBLIC_CONTACT_EMAIL}
           </p>
         </div>
       </main>
 
       {/* 設定助手 */}
       {showSetup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-          <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl max-h-[90vh] rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-slate-900 border border-slate-800 w-full max-w-2xl max-h-[85vh] rounded-[2rem] overflow-hidden flex flex-col shadow-2xl">
             <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-slate-900/50">
               <h2 className="text-xl font-bold flex items-center gap-3 text-white">
                 <DatabaseZap className="text-amber-500" /> 後端發信設定教學
               </h2>
-              <button onClick={() => setShowSetup(false)} className="text-slate-500 hover:text-white">✕</button>
+              <button onClick={() => setShowSetup(false)} className="p-2 text-slate-500 hover:text-white">✕</button>
             </div>
             
-            <div className="p-6 overflow-y-auto space-y-6 text-sm">
+            <div className="p-6 overflow-y-auto space-y-6 text-sm overscroll-contain">
               <div className="p-4 bg-blue-900/20 border border-blue-900/30 rounded-xl">
                 <p className="text-blue-200 font-bold mb-1">💡 專業建議：</p>
-                <p className="text-blue-300/80 text-xs">請使用 <strong>{TARGET_EMAIL}</strong> 帳號登入 Google 並執行以下步驟，這樣學生收到的信件寄件者才會顯示為該信箱。</p>
+                <p className="text-blue-300/80 text-xs leading-relaxed">請使用 <strong>{ADMIN_EMAIL}</strong> 帳號登入 Google 並執行以下步驟，這樣學生收到的信件寄件者才會顯示為該信箱。</p>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-amber-500 font-bold">1. 貼上程式碼</h3>
                 <ol className="list-decimal list-inside space-y-2 text-slate-300">
                   <li>開啟一個新的 Google 試算表。</li>
-                 <li>點擊「延伸模組」 &gt; 「Apps Script」。</li>  
+                  <li>點擊「延伸模組」 > 「Apps Script」。</li>
                   <li>刪除所有內容並貼上下方的程式碼：</li>
                 </ol>
-                <div className="relative group">
+                <div className="relative group mt-2">
                   <pre className="bg-black/50 p-4 rounded-xl text-xs overflow-x-auto text-blue-300 border border-slate-700 h-48 scrollbar-thin">
                     {GOOGLE_APPS_SCRIPT_CODE}
                   </pre>
                   <button 
                     onClick={copyCode}
-                    className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 p-2 rounded-lg transition-colors flex items-center gap-2"
+                    className="absolute top-2 right-2 bg-slate-800 hover:bg-slate-700 p-2 rounded-lg transition-colors flex items-center gap-2 shadow-lg"
                   >
                     {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                    <span>{copied ? '已複製' : '複製程式碼'}</span>
+                    <span className="text-[10px]">{copied ? '已複製' : '複製'}</span>
                   </button>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <h3 className="text-amber-500 font-bold">2. 部署網頁應用程式</h3>
-                <ul className="list-disc list-inside space-y-2 text-slate-300">
-                  <li>點擊「部署」 &gt; 「新部署」。</li>  
+                <ul className="list-disc list-inside space-y-2 text-slate-300 leading-relaxed">
+                  <li>點擊「部署」 > 「新部署」。</li>
                   <li>類型選「網頁應用程式」。</li>
-                  <li>執行身分：<span className="text-white font-bold">我 ({TARGET_EMAIL})</span></li>
+                  <li>執行身分：<span className="text-white font-bold">我 ({ADMIN_EMAIL})</span></li>
                   <li>誰可以存取：<span className="text-red-500 underline font-bold">「任何人」(Anyone)</span></li>
                   <li>按部署，並在彈出的權限視窗選「允許」。</li>
                 </ul>
@@ -267,10 +268,10 @@ const App: React.FC = () => {
               </div>
             </div>
             
-            <div className="p-6 bg-slate-950/50 border-t border-slate-800">
+            <div className="p-4 bg-slate-950/50 border-t border-slate-800">
               <button 
                 onClick={() => setShowSetup(false)}
-                className="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-bold transition-colors text-white"
+                className="w-full bg-slate-800 hover:bg-slate-700 py-4 rounded-xl font-bold transition-colors text-white active:scale-[0.98]"
               >
                 關閉教學視窗
               </button>

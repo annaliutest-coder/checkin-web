@@ -1,8 +1,9 @@
 
-export const TARGET_EMAIL = 'annaliutest@gmail.com';
+export const ADMIN_EMAIL = 'annaliutest@gmail.com'; // 後端管理與發信帳號
+export const PUBLIC_CONTACT_EMAIL = 'aclc@ntnu.edu.tw'; // 前端顯示的聯絡信箱
 
 // 當您在 GAS 部署完畢後，請將下面的 'YOUR_DEPLOYMENT_ID' 替換為實際的 ID
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIMOV23va8FoYsPRRuu4hSlxs9_ucVfkWtOdmUAhk3BI3Azf1GkJvbzOHMpvUV843pHA/exec';
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 /**
@@ -18,14 +19,14 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
     var studentEmail = data.email;
     var time = data.timestamp;
-    var adminEmail = "annaliutest@gmail.com"; // 指定管理員信箱
+    var adminEmail = "${ADMIN_EMAIL}"; // 指定管理員信箱
     
     // 1. 紀錄到 Google 試算表
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheets()[0];
     sheet.appendRow([time, studentEmail, "已發送歡迎信"]);
     
-    // 2. 發送通知給系辦管理員 (annaliutest@gmail.com)
+    // 2. 發送通知給系辦管理員
     MailApp.sendEmail({
       to: adminEmail,
       subject: "【重要通知】新學生已完成打卡簽到：" + studentEmail,
