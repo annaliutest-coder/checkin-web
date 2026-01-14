@@ -2,8 +2,8 @@
 export const ADMIN_EMAIL = 'xinyiliu@ntnu.edu.tw'; // 後端管理與發信帳號
 export const PUBLIC_CONTACT_EMAIL = 'clc@ntnu.edu.tw'; // 前端顯示的聯絡信箱
 
-// 當您在 GAS 部署完畢後，請將下面的 'YOUR_DEPLOYMENT_ID' 替換為實際的 ID
-export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+// 已更新為實際部署的網址
+export const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxIMOV23va8FoYsPRRuu4hSlxs9_ucVfkWtOdmUAhk3BI3Azf1GkJvbzOHMpvUV843pHA/exec';
 
 export const GOOGLE_APPS_SCRIPT_CODE = `
 /**
