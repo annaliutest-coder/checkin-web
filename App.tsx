@@ -91,7 +91,7 @@ const App: React.FC = () => {
             NTNU <span className="text-red-600">Smart Check-in</span>
           </h1>
           <div className="space-y-1">
-            <p className="text-slate-200 font-bold text-lg tracking-wide">師大華語文教學系 國際與文化組</p>
+            <p className="text-slate-200 font-bold text-lg tracking-wide">師大華語文教學系 國際華語與文化組</p>
             <p className="text-slate-500 font-medium uppercase tracking-[0.15em] text-[10px]">Department of Chinese as a Second Language</p>
           </div>
         </div>
