@@ -34,7 +34,7 @@ function doPost(e) {
     });
 
     // 3. 發送正式歡迎信給學生
-    var subject = "【師大華語文教學系CSL】歡迎申請師大華語系國際與文化組";
+    var subject = "【師大華語文教學系CSL】歡迎申請師大華語系國際華語與文化組";
     var body = "親愛的同學您好：\\n\\n" +
       "我們已經收到您的打卡資訊，以下是您感興趣的相關申請連結：\\n\\n" +
       "🔹 NTNU外國學生入學申請網站：https://bds.oia.ntnu.edu.tw/bds/apply \\n" +
